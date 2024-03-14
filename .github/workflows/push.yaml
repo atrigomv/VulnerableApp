@@ -1,0 +1,9 @@
+name: push workflow
+run-name: push workflow
+on: [push]
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
