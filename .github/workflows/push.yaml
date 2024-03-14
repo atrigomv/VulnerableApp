@@ -7,3 +7,13 @@ jobs:
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
+  codeql:
+    runs-on: ubuntu-latest
+    steps:
+      - name: CodeQL
+        run: |
+          wget https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.16.4/codeql-bundle-linux64.tar.gz
+          tar -xvf codeql-bundle-linux64.tar.gz
+          cd codeql
+          ls -la
+          ./codeql resolve qlpacks
