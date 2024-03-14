@@ -53,4 +53,9 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
           horusec version
-          horusec start -D -p project/
+          horusec start -D -p project/ -o sarif -O horusec_report.sarif
+          ls -la
+      #  id: run_horusec
+      #  uses: fike/horusec-action@v0.1
+      #  with:
+      #    arguments: -p="project/"
