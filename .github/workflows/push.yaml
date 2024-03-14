@@ -30,4 +30,4 @@ jobs:
           cd codeql
           ls -la
           ./codeql --version
-          ./codeql database create project
+          ./codeql database create project --language=java
