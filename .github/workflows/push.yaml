@@ -7,14 +7,27 @@ jobs:
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
+      - name: Persist Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: .
   codeql:
+    needs: checkout
     runs-on: ubuntu-latest
     steps:
+      - name: Generating destination folder
+        run: mkdir project
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: project/
       - name: CodeQL
         run: |
           wget https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.16.4/codeql-bundle-linux64.tar.gz
-          tar -xvf codeql-bundle-linux64.tar.gz
+          tar -xf codeql-bundle-linux64.tar.gz
           cd codeql
           ls -la
-          echo "PRUEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           ./codeql --version
+          ./codeql database create project
