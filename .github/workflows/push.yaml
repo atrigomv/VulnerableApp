@@ -43,7 +43,10 @@ jobs:
           name: my-artifact
           path: project/
       - name: Run Horusec
-        id: run_horusec
-        uses: fike/horusec-action@v0.1
-        with:
-          arguments: -p="project/"
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
+          horusec version
+      #  id: run_horusec
+      #  uses: fike/horusec-action@v0.1
+      #  with:
+      #    arguments: -p="project/"
