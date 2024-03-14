@@ -55,9 +55,12 @@ jobs:
           horusec version
           horusec start -D -p project/ -o sarif -O horusec_report.sarif
           ls -la
-          cat horusec_report.sarif
       - name: Persist Artifact
         uses: actions/upload-artifact@v3
         with:
           name: horusec_report
           path: horusec_report.sarif
+      #  id: run_horusec
+      #  uses: fike/horusec-action@v0.1
+      #  with:
+      #    arguments: -p="project/"
