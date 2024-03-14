@@ -16,4 +16,5 @@ jobs:
           tar -xvf codeql-bundle-linux64.tar.gz
           cd codeql
           ls -la
-          ./codeql resolve qlpacks
+          echo "PRUEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          ./codeql --version
