@@ -30,4 +30,20 @@ jobs:
           cd codeql
           ls -la
           ./codeql --version
-          ./codeql database create project --language=java
+        #  ./codeql database create project --language=java
+  horusec:
+    needs: checkout
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generating destination folder
+        run: mkdir project
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: project/
+      - name: Run Horusec
+        id: run_horusec
+        uses: fike/horusec-action@v0.1
+        with:
+          arguments: -p="project/"
