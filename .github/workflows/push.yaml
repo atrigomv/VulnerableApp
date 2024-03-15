@@ -2,27 +2,11 @@ name: push workflow
 run-name: push workflow
 on: [push]
 jobs:
-  checkout:
+  codeql:
     runs-on: ubuntu-latest
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
-      - name: Persist Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: .
-  codeql:
-    needs: checkout
-    runs-on: ubuntu-latest
-    steps:
-      - name: Generating destination folder
-        run: mkdir project
-      - name: Download Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: my-artifact
-          path: project/
       - name: CodeQL
         run: |
           wget https://github.com/github/codeql-action/releases/download/codeql-bundle-v2.16.4/codeql-bundle-linux64.tar.gz
@@ -30,30 +14,17 @@ jobs:
           cd codeql
           ls -la
           ./codeql --version
-        #  ./codeql database create project --language=java
+        #  ./codeql database create . --language=java
   horusec:
-    needs: checkout
     runs-on: ubuntu-latest
     steps:
-      - name: Generating destination folder
-        run: mkdir project
-      - name: Download Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: my-artifact
-          path: project/
-      #- name: Install Docker
-      #  run: |
-      #    sudo apt update
-      #    sudo apt install apt-transport-https ca-certificates curl software-properties-common
-      #    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-      #    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-      #    sudo apt install docker-ce
+      - name: Code Checkout
+        uses: actions/checkout@v4
       - name: Run Horusec
         run: |
           curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/master/deployments/scripts/install.sh | bash -s latest
           horusec version
-          horusec start -D -p project/ -o sarif -O horusec_report.sarif
+          horusec start -D -p ./ -o json -O horusec_report.json
           ls -la
       - name: Persist Artifact
         uses: actions/upload-artifact@v3
