@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: horusec_report
-          path: horusec_report.sarif
+          path: horusec_report.json
       #  id: run_horusec
       #  uses: fike/horusec-action@v0.1
       #  with:
