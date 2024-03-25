@@ -33,9 +33,8 @@ jobs:
           path: horusec_report.json
       - name: Check Security Gates
         run: |
-          curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" https://lntb5bfib8.execute-api.eu-west-1.amazonaws.com/v0/secgate?finding=DLP%20-%20Secret%20Detected&service=cerberus
+          curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" ${{secrets.CARONTE_ENDPOINT}}/v0/secgate?finding=DLP%20-%20Secret%20Detected&service=cerberus
       #  id: run_horusec
       #  uses: fike/horusec-action@v0.1
       #  with:
       #    arguments: -p="project/"
-      # LOLO
