@@ -33,7 +33,7 @@ jobs:
           path: horusec_report.json
       - name: Check Security Gates
         run: |
-          curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" ${{secrets.CARONTE_ENDPOINT}}/v0/secgate?finding=uno%20dos&service=prueba
+          curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" ${{secrets.CARONTE_ENDPOINT}}/v0/secgate?service=prueba&finding=uno%20dos
       #  id: run_horusec
       #  uses: fike/horusec-action@v0.1
       #  with:
