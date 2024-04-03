@@ -34,7 +34,7 @@ jobs:
       - name: Check Security Gates
         run: |
           curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-134&service=horusec"
-          sg_status=$(curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-134&service=horusec" | jq -r '.Status')
+          sg_status=$(curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-134&service=horusec" | jq -r 'Status')
           echo $sg_status
           
 
