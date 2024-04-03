@@ -40,7 +40,6 @@ jobs:
           echo "$sg_status"
           echo "\n"
           echo "$sg_type"
-
-          if [$sg_status = "\"True\""]; then
-            echo "TRUEEEEE CARA CULO!!!"
-          fi
+          $moco="moco peludo"
+          echo ""
+          echo $moco
