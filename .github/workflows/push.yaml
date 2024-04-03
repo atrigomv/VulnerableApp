@@ -36,14 +36,19 @@ jobs:
           curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-134&service=horusec"
           sg_status=$(curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-134&service=horusec" | cut -d "," -f 3 | cut -d ":" -f 2)
           sg_type=$(curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-134&service=horusec" | cut -d "," -f 4 | cut -d ":" -f 2)
+          sg_status=$(echo "$sg_status" | tr -d '"')
+          sg_type=$(echo "$sg_type" | tr -d '"')
           echo ""
           sg_status=$(echo "$sg_status" | tr -d '"')
           echo "$sg_status"
           echo ""
           echo "$sg_type"
-          moco="moco peludo"
-          echo ""
-          echo $moco
+          if [$sg_type = "hard"]; then
+            echo "HARD"
+          fi
+          if [$sg_type = "soft"]; then
+            echo "SOFT"
+          fi
 
       #  id: run_horusec
       #  uses: fike/horusec-action@v0.1
