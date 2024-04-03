@@ -41,3 +41,19 @@ jobs:
             echo "HARD SECURITY GATE --> Failing the workflow..."
             exit 1
           fi
+
+          if [ "$sg_status" = "True" ] && [ "$sg_type" = "soft" ]; then
+            echo "\n"
+            echo "SOFT SECURITY GATE --> Be careful my friend"
+          fi
+
+          if [ "$sg_status" != "True" ]; then
+            echo "\n"
+            echo "Security gate passed successfully!"
+          fi
+          
+
+      #  id: run_horusec
+      #  uses: fike/horusec-action@v0.1
+      #  with:
+      #    arguments: -p="project/"
