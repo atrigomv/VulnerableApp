@@ -40,6 +40,11 @@ jobs:
           echo "$sg_status"
           echo "\n"
           echo "$sg_type"
-          $moco="moco peludo"
+          moco="moco peludo"
           echo ""
           echo $moco
+
+      #  id: run_horusec
+      #  uses: fike/horusec-action@v0.1
+      #  with:
+      #    arguments: -p="project/"
