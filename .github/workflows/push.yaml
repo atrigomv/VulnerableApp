@@ -34,19 +34,11 @@ jobs:
       - name: Check Security Gates
         run: |
           curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-134&service=horusec"
-          sg_status=$(curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-134&service=horusec" | cut -d "," -f 3 | cut -d ":" -f 2)
-          sg_type=$(curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-134&service=horusec" | cut -d "," -f 4 | cut -d ":" -f 2)
-          sg_status=$(echo "$sg_status" | tr -d '"')
-          sg_type=$(echo "$sg_type" | tr -d '"')
-          
           json=$(curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-134&service=horusec")
 
           # Extraer los valores de "status" y "type" usando jq
           status=$(echo "$json" | jq -r '.status')
           type=$(echo "$json" | jq -r '.type')
-
-          echo $status
-          echo "$type"
 
           # Verificar las condiciones
           if [[ "$status" == "True" && "$type" == "hard" ]]; then
