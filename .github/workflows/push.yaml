@@ -50,6 +50,17 @@ jobs:
 
           # Verificar las condiciones
           if [[ "$status" == "True" && "$type" == "hard" ]]; then
-              echo "Error: El valor de 'status' es 'True' y el de 'type' es 'hard'."
+              echo "HARD SECURITY GATE --> Failing the workflow..."
               exit 1
+          elif [[ "$status" == "True" && "$type" == "soft" ]]; then
+              echo "SOFT SECURITY GATE --> Be careful my friend..."
+          else
+              echo "Security Gate passed!!!"
           fi
+
+
+      #  id: run_horusec
+      #  uses: fike/horusec-action@v0.1
+      #  with:
+      #    arguments: -p="project/"
+    
