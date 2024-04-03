@@ -40,13 +40,11 @@ jobs:
           echo "$sg_status"
           echo "\n"
           echo "$sg_type"
-          if [[ "$sg_status" == "True" && "$sg_type" == "hard" ]]; then
-            echo "Security check failed."
+          if [ "$sg_status" = "True" ] && [ "$sg_type" = "hard" ]; then
+            echo "Both sg_status and sg_type meet the criteria. Failing the workflow."
             exit 1
-          elif [[ "$sg_status" == "True" && "$sg_type" == "soft" ]]; then
-            echo "Security check warning."
           else
-            echo "Security check passed."
+            echo "Conditions not met. Continuing with the workflow."
           fi
           
 
