@@ -33,8 +33,8 @@ jobs:
           path: horusec_report.json
       - name: Check Security Gates
         run: |
-          curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-134&service=horusec"
-          json=$(curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-134&service=horusec")
+          curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-1341&service=horusec"
+          json=$(curl -X GET -H "x-api-key: ${{secrets.CARONTE_API_KEY}}" "${{secrets.CARONTE_ENDPOINT}}/v0/secgate?findingName=&findingID=HS-JAVA-1341&service=horusec")
 
           # Extraer los valores de "status" y "type" usando jq
           status=$(echo "$json" | jq -r '.status')
@@ -42,11 +42,14 @@ jobs:
 
           # Verificar las condiciones
           if [[ "$status" == "True" && "$type" == "hard" ]]; then
+              echo ""
               echo "HARD SECURITY GATE --> Failing the workflow..."
               exit 1
           elif [[ "$status" == "True" && "$type" == "soft" ]]; then
+              echo ""
               echo "SOFT SECURITY GATE --> Be careful my friend..."
           else
+              echo ""
               echo "Security Gate passed!!!"
           fi
 
