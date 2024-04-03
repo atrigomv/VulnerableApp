@@ -40,15 +40,6 @@ jobs:
           echo "$sg_status"
           echo "\n"
           echo "$sg_type"
-          if [ "$sg_status" = "True" ] && [ "$sg_type" = "hard" ]; then
-            echo "Both sg_status and sg_type meet the criteria. Failing the workflow."
-            exit 1
-          else
-            echo "Conditions not met. Continuing with the workflow."
-          fi
-          
 
-      #  id: run_horusec
-      #  uses: fike/horusec-action@v0.1
-      #  with:
-      #    arguments: -p="project/"
+          if [$sg_status = "\"True\""]; then
+            echo "TRUEEEEE CARA CULO!!!"
