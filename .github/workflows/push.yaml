@@ -40,7 +40,7 @@ jobs:
             echo "\n"
             echo "HARD SECURITY GATE --> Failing the workflow..."
             exit 1
-          elif [[ "${{ env.sg_status }}" == "True" && "${{ env.sg_type }}" == "soft" ]]; then
+          elif [[ "$sg_status" = "True" ] && [ "$sg_type" = "soft" ]]; then
             echo "\n"
             echo "SOFT SECURITY GATE"
           else
