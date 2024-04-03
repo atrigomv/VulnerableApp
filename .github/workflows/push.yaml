@@ -43,3 +43,4 @@ jobs:
 
           if [$sg_status = "\"True\""]; then
             echo "TRUEEEEE CARA CULO!!!"
+          fi
