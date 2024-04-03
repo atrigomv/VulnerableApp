@@ -51,13 +51,7 @@ jobs:
             echo "SOFT SECURITY GATE --> Be careful my friend"
           fi
 
-          if [ "$sg_status" != "True" ]; then
+          if [ "$sg_status" = "False" ]; then
             echo "\n"
             echo "Security gate passed successfully!"
           fi
-          
-
-      #  id: run_horusec
-      #  uses: fike/horusec-action@v0.1
-      #  with:
-      #    arguments: -p="project/"
