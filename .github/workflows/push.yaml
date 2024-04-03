@@ -40,15 +40,4 @@ jobs:
             echo "\n"
             echo "HARD SECURITY GATE --> Failing the workflow..."
             exit 1
-          elif [[ "$sg_status" = "True" ] && [ "$sg_type" = "soft" ]]; then
-            echo "\n"
-            echo "SOFT SECURITY GATE"
-          else
-            echo "Security Gate passed"
           fi
-          
-
-      #  id: run_horusec
-      #  uses: fike/horusec-action@v0.1
-      #  with:
-      #    arguments: -p="project/"
