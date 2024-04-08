@@ -15,6 +15,15 @@ jobs:
           ls -la
           ./codeql --version
         #  ./codeql database create . --language=java
+  semgrep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+      - name: Run Semgrep
+        run: |
+          python3 -m pip install semgrep
+          semgrep --version
   horusec:
     runs-on: ubuntu-latest
     steps:
