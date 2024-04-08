@@ -20,10 +20,12 @@ jobs:
     steps:
       - name: Code Checkout
         uses: actions/checkout@v4
-      - name: Run Semgrep
+      - name: Initializing Semgrep
         run: |
           python3 -m pip install semgrep
           semgrep --version
+      - name: Run Semgrep
+        run: semgrep --config "p/default" --metrics=off --json -o semgrep.json
   horusec:
     runs-on: ubuntu-latest
     steps:
