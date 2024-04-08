@@ -25,7 +25,12 @@ jobs:
           python3 -m pip install semgrep
           semgrep --version
       - name: Run Semgrep
-        run: semgrep --config "p/default" --metrics=off --json -o semgrep.json
+        run: semgrep --config "p/default" --metrics=off --json -o semgrep_report.json
+      - name: Persist Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: semgrep_report
+          path: semgrep_report.json
   horusec:
     runs-on: ubuntu-latest
     steps:
