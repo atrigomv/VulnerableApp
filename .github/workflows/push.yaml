@@ -15,12 +15,6 @@ jobs:
           ls -la
           ./codeql --version
         #  ./codeql database create . --language=java
-  azureDevOps:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Execute Curl
-        run: |
-          curl -u atrigom:m63xmp6tspbf2rtjx637fqc3jpfjt5yzd3imuexjiu3atpngypda -H "Content-Type: application/json" https://dev.azure.com/MapfreCORP-DCS/2c94459a-7203-463b-883f-1db7ccb86c5d/_apis/wit/workItems/5316
   semgrep:
     runs-on: ubuntu-latest
     steps:
